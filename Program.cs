@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using MyBoards.Entities;
+
 namespace MyBoards
 {
     public class Program
@@ -14,6 +17,12 @@ namespace MyBoards
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<MyBoardContext>(
+                option => option.UseSqlServer(builder.Configuration.GetConnectionString("MyBoardsConnectionString"))
+                );
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,6 +33,8 @@ namespace MyBoards
             }
 
             app.Run();
+
+
 
         }
     }
