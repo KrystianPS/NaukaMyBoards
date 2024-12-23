@@ -9,5 +9,8 @@
         public DateTime CreatedCommentDate { get; set; }
         public DateTime? UpdatedCommentDate { get; set; }
 
+
+        public WorkItem WorkItem { get; set; }
+        public int WorkItemId { get; set; }
     }
 }

@@ -36,6 +36,14 @@ namespace MyBoards.Entities
                 eb.Property(x => x.RemainingWork).HasPrecision(14, 2);
                 eb.Property(x => x.Priority).HasDefaultValue(1);
 
+                eb.HasMany(x => x.Comments)
+                    .WithOne(c => c.WorkItem)
+                    .HasForeignKey(c => c.WorkItem.Id);
+
+                eb.HasOne(x => x.Author)
+                    .WithMany(u => u.WorkItems)
+                    .HasForeignKey(u => u.AuthorId);
+
 
             });
             //configure default values
@@ -49,6 +57,8 @@ namespace MyBoards.Entities
                 .HasOne(u => u.Address)
                 .WithOne(u => u.User)
                 .HasForeignKey<Address>(a => a.UserId);
+
+
         }
     }
 }
