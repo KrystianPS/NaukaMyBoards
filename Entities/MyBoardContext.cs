@@ -45,6 +45,10 @@ namespace MyBoards.Entities
                     .HasForeignKey(u => u.AuthorId);
 
 
+                eb.HasMany(x => x.Tags)
+                    .WithMany(t => t.WorkItems);
+
+
             });
             //configure default values
             modelBuilder.Entity<Comment>(eb =>
@@ -58,8 +62,7 @@ namespace MyBoards.Entities
                 .WithOne(u => u.User)
                 .HasForeignKey<Address>(a => a.UserId);
 
-            modelBuilder.Entity<WorkItemTag>()
-                .HasKey(wit => new { wit.TagId, wit.WorkItemId });
+
 
 
         }

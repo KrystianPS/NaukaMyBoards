@@ -40,7 +40,9 @@
 
         public Guid AuthorId { get; set; }
 
-        public List<WorkItemTag> WorkItemTags { get; set; } = new List<WorkItemTag>();
+
+        public List<Tag> Tags { get; set; }
+        //public List<WorkItemTag> WorkItemTags { get; set; } = new List<WorkItemTag>();
 
     }
 
