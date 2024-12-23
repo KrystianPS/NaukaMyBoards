@@ -39,6 +39,9 @@
         public User Author { get; set; }
 
         public Guid AuthorId { get; set; }
+
+        public List<WorkItemTag> WorkItemTags { get; set; } = new List<WorkItemTag>();
+
     }
 
 
