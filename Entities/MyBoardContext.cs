@@ -16,6 +16,26 @@ namespace MyBoards.Entities
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<WorkItem>()
+            //    .Property(x => x.State)
+            //    .IsRequired();
+            //modelBuilder.Entity<WorkItem>()
+            //    .Property(x => x.Area)
+            //    .HasColumnType("varchar(200)");
+            //** REFACTORED FOR entity type builder lambda ** 
 
+            modelBuilder.Entity<WorkItem>(eb =>
+            {
+                eb.Property(x => x.State).IsRequired();
+                eb.Property(x => x.Area).HasColumnType("varchar(200)");
+                eb.Property(x => x.IterationPath).HasColumnName("Iteration_Path");
+                eb.Property(x => x.Effort).HasColumnType("decimal(5,2");
+                eb.Property(x => x.Activity).HasMaxLength(200);
+                eb.Property(x => x.RemainingWork).HasPrecision(14, 2);
+
+            });
+        }
     }
 }

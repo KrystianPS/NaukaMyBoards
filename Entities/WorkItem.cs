@@ -2,9 +2,15 @@
 {
     public class WorkItem
     {
+        //** column configuration by property annotation ** add specific configuration before property line
+        //** property annotation canfiguration REFACTORED FOR .ONMODEL METHOD **
+
+
 
         public int Id { get; set; }
+        //[Required]
         public string State { get; set; }
+        //[Column(TypeName = "varchar(200)")]
         public string Area { get; set; }
 
         public string IterationPath { get; set; }
@@ -13,13 +19,17 @@
 
         //Epic 
         public DateTime? StartDate { get; set; }
+        //[Precision(3)]
         public DateTime? EndDate { get; set; }
 
         //Issue 
+        //[Column(TypeName = "decimal(5,2")]
         public decimal Effort { get; set; }
 
         //Task
+        //[MaxLength(200)]
         public string Activity { get; set; }
+        //[Precision(14,2)]
         public decimal RemainingWork { get; set; }
 
         public string Type { get; set; }
