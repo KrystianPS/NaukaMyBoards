@@ -46,7 +46,26 @@ namespace MyBoards.Entities
 
 
                 eb.HasMany(x => x.Tags)
-                    .WithMany(t => t.WorkItems);
+                    .WithMany(t => t.WorkItems)
+                    .UsingEntity<WorkItemTag>(
+                        x => x.HasOne(wit => wit.Tag)
+                            .WithMany()
+                            .HasForeignKey(wit => wit.TagId),
+
+                        x => x.HasOne(wit => wit.WorkItem)
+                            .WithMany()
+                            .HasForeignKey(wit => wit.WorkItemId),
+
+                        wit =>
+                        {
+                            wit.HasKey(x => new { x.TagId, x.WorkItemId });
+                            wit.Property(x => x.PublicationDate).HasDefaultValueSql("getutcdate()");
+                        }
+
+
+
+
+                    );
 
 
             });
