@@ -15,6 +15,7 @@ namespace MyBoards.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<State> States { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +29,6 @@ namespace MyBoards.Entities
 
             modelBuilder.Entity<WorkItem>(eb =>
             {
-                eb.Property(x => x.State).IsRequired();
                 eb.Property(x => x.Area).HasColumnType("varchar(200)");
                 eb.Property(x => x.IterationPath).HasColumnName("Iteration_Path");
                 eb.Property(x => x.Effort).HasColumnType("decimal(5,2");
@@ -67,6 +67,10 @@ namespace MyBoards.Entities
 
                     );
 
+                eb.HasOne(x => x.State)
+                    .WithMany(s => s.WorkItems)
+                    .HasForeignKey(x => x.StateId);
+
 
             });
             //configure default values
@@ -80,6 +84,11 @@ namespace MyBoards.Entities
                 .HasOne(u => u.Address)
                 .WithOne(u => u.User)
                 .HasForeignKey<Address>(a => a.UserId);
+
+            modelBuilder.Entity<State>()
+                .Property(s => s.CurrentState).IsRequired().HasColumnType("varchar(50)");
+
+
 
 
 

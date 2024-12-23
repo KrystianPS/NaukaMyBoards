@@ -2,13 +2,12 @@
 {
     public class WorkItem
     {
-        //** column configuration by property annotation ** add specific configuration before property line
+        //** column configuration by property annotation ** add specific configuration before property line [*configuration] 
         //** property annotation canfiguration REFACTORED FOR .ONMODEL METHOD **
 
 
         public int Id { get; set; }
-        //[Required]
-        public string State { get; set; }
+
         //[Column(TypeName = "varchar(200)")]
         public string Area { get; set; }
 
@@ -42,7 +41,10 @@
 
 
         public List<Tag> Tags { get; set; }
-        //public List<WorkItemTag> WorkItemTags { get; set; } = new List<WorkItemTag>();
+
+
+        public State State { get; set; }
+        public int StateId { get; set; }
 
     }
 
