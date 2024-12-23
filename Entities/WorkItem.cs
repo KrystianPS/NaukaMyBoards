@@ -6,7 +6,6 @@
         //** property annotation canfiguration REFACTORED FOR .ONMODEL METHOD **
 
 
-
         public int Id { get; set; }
         //[Required]
         public string State { get; set; }

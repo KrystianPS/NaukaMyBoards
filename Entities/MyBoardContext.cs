@@ -34,7 +34,15 @@ namespace MyBoards.Entities
                 eb.Property(x => x.Effort).HasColumnType("decimal(5,2");
                 eb.Property(x => x.Activity).HasMaxLength(200);
                 eb.Property(x => x.RemainingWork).HasPrecision(14, 2);
+                eb.Property(x => x.Priority).HasDefaultValue(1);
 
+
+            });
+            //configure default values
+            modelBuilder.Entity<Comment>(eb =>
+            {
+                eb.Property(x => x.CreatedCommentDate).HasDefaultValueSql("getutcdate()");
+                eb.Property(x => x.UpdatedCommentDate).ValueGeneratedOnUpdate();
             });
         }
     }
