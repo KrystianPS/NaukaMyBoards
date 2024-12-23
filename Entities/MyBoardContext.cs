@@ -44,6 +44,11 @@ namespace MyBoards.Entities
                 eb.Property(x => x.CreatedCommentDate).HasDefaultValueSql("getutcdate()");
                 eb.Property(x => x.UpdatedCommentDate).ValueGeneratedOnUpdate();
             });
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Address)
+                .WithOne(u => u.User)
+                .HasForeignKey<Address>(a => a.UserId);
         }
     }
 }
