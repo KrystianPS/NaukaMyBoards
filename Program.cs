@@ -31,6 +31,15 @@ namespace MyBoards
                 app.UseSwaggerUI();
             }
 
+            var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<MyBoardContext>();
+
+            var pendingMigrations = dbContext.Database.GetPendingMigrations();
+            if (pendingMigrations.Any())
+            {
+                dbContext.Database.Migrate();
+            }
+
             app.Run();
 
 
