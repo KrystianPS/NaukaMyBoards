@@ -18,8 +18,7 @@ namespace MyBoards
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<MyBoardContext>(
-                option => option.UseSqlServer(builder.Configuration.GetConnectionString("MyBoardsConnectionString"))
-                );
+                option => option.UseSqlServer(builder.Configuration.GetConnectionString("MyBoardsConnectionString")));
 
 
 

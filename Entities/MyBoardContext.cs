@@ -52,7 +52,7 @@ namespace MyBoards.Entities
 
                 eb.HasMany(x => x.Comments)
                     .WithOne(c => c.WorkItem)
-                    .HasForeignKey(c => c.WorkItem.Id);
+                    .HasForeignKey(c => c.Id);
 
                 eb.HasOne(x => x.Author)
                     .WithMany(u => u.WorkItems)
